@@ -22,24 +22,33 @@
     <h1>Library.</h1>
   </div>
 
-  <div class="container">
-    <div class="box">
-      <h3>New book</h3>
-      <p>Title:</p>
-      <p>Author:</p>
-      <p>Pages:</p>
-      <p>Did you read it?</p>
-      <div class="btn add-new">Add</div>
-    </div>
+  <div class="container" id="container">
 
-    <div class="box">
+    <form id="box">
+      <h3>New book</h3>
+      <!-- INPUT -->
+      <div class="book-input">
+        <input type="text" name="book-title" id="book-title" placeholder="Title"  required>
+        <input type="text" name="book-author" id="book-author" placeholder="Author" required>
+        <input type="number" name="book-pages" id="book-pages" placeholder="Pages" min="1" max="10000000" required>
+      </div>
+      <!-- CHECKBOX -->
+      <div class="book-check">
+        <label for="book-read">Did you read it?</label>
+        <input type="checkbox" name="book-read" id="book-read">
+      </div>
+
+      <button class="btn add-new" type="submit" onclick="addBook()">Add</button>
+    </form>
+
+    <!-- <div class="add-box">
       <h3>The Lion, the Witch, and the Wardrobe</h3>
       <p>C. S. Lewis</p>
       <p>245 pgs</p>
-      <div class="btn read" type="button">Read</div>
-      <div class="btn not-read" type="button">Not Read</div>
+      <div class="btn read" type="button" onclick="readBook()">Read</div>
+      <div class="btn not-read" type="button" onclick="readBook()">Not Read</div>
       <div class="btn delete" type="button">Delete</div>
-    </div>
+    </div> -->
 
   </div>
 
