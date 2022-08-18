@@ -36,12 +36,6 @@ footer {
   text-align: center;
 }
 
-button {
-  width: 100px;
-  height: 50px;
-  background-color: var(--orange);
-}
-
 a {
   text-decoration: none;
   color: black;
@@ -58,11 +52,14 @@ a:hover {
   grid-template-columns: 1fr 1fr 1fr;
   max-width: 1050px;
   margin: auto;
+  padding-top: 118px;
 }
 
 .header {
   background-color: var(--beige);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
 }
 
 #box, .add-box {
@@ -70,7 +67,7 @@ a:hover {
   border-radius: 15px;
   min-height: 300px;
   width: 300px;
-  margin: 50px 25px 25px 25px;
+  margin: 25px 25px 25px 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -160,4 +157,29 @@ input:focus {
   background-color: var(--blue);
   color: black;
   margin-bottom: 25px;
+}
+
+/* MEDIA */
+@media (max-width: 1050px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    width: 750px;
+  }
+
+  #box, .add-box {
+    margin: 25px auto;
+    background-color: white;
+  }
+}
+
+@media (max-width: 750px) {
+  .container {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  #box, .add-box {
+    max-width: 300px;
+    margin: 25px auto;
+  }
 }

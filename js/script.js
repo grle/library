@@ -18,6 +18,17 @@ function addBook() {
     return;
   }
 
+  //remove redundancy
+  let repBool = isRepeat(newBook.title);
+  if (repBool == true) {
+    alert("You already have this title in the library");
+    document.getElementById("book-title").value = "";
+    document.getElementById("book-author").value = "";
+    document.getElementById("book-pages").value = "";
+    document.getElementById("book-read").checked = false;
+    return;
+  }
+
   //checkmark
   let readBool = document.getElementById("book-read").checked;
   newBook.read = readBool;
@@ -64,6 +75,9 @@ function book() {
       pages.innerHTML = myLibrary[i].pages + " pages";
     }
 
+    //data attribute
+    includeBook.setAttribute("data-index-number", i)
+
     //add to the box
     includeBook.appendChild(title);
     includeBook.appendChild(author);
@@ -71,8 +85,8 @@ function book() {
 
     //add checkbox button
     let checkboxBtn = document.createElement("div");
-    checkboxBtn.addEventListener("onclick", (event) => {
-      readBook();
+    checkboxBtn.addEventListener("click", (event) => {
+      readBook(checkboxBtn, i);
     });
     if (myLibrary[i].read == true) {
       checkboxBtn.innerHTML = "Read";
@@ -82,21 +96,62 @@ function book() {
       checkboxBtn.innerHTML = "Not Read";
       includeBook.appendChild(checkboxBtn).className = "btn not-read";
     }
+
     //add delete button
     let button = document.createElement("div");
     button.innerHTML = "Delete"
+    button.addEventListener("click", (event) => {
+      deleteBook(includeBook, i);
+    });
     includeBook.appendChild(button).className = "btn delete";
-    //add eventlistener
 
     //add to container
     container.appendChild(includeBook).className = "add-box";
   }
 }
 
-function deleteBook() {
+function deleteBook(thisDiv, num) {
+  //remove information in library
+  console.log(num);
+  let holdArray = [];
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (i !== num) {
+      holdArray.push(myLibrary[i]);
+    }
+  }
+  myLibrary = holdArray;
+  console.log(myLibrary);
+  thisDiv.remove();
+}
+
+function readBook(thisDiv, num) {
+  if (thisDiv.classList.contains("read")) {
+    thisDiv.classList.remove("read");
+    thisDiv.classList.add("not-read");
+    thisDiv.innerHTML = "Not Read";
+
+    //change information in the library
+    myLibrary[num].read = false;
+  }
+  else if (thisDiv.classList.contains("not-read")) {
+    thisDiv.classList.remove("not-read");
+    thisDiv.classList.add("read");
+    thisDiv.innerHTML = "Read";
+
+    //change information in the library
+    myLibrary[num].read = true;
+  }
 
 }
 
-function readBook() {
+//check for redundancy
+function isRepeat(bookTitle) {
 
+  for (let i = 0; i < myLibrary.length; i++) {
+    let bookHold = myLibrary[i].title;
+    if (bookHold == bookTitle) {
+      return true;
+    }
+  }
+  return false;
 }
