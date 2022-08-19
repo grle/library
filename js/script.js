@@ -42,9 +42,6 @@ function addBook() {
 
   //run book
   book();
-
-  //check console log
-  console.log(myLibrary);
 }
 
 function book() {
@@ -112,7 +109,6 @@ function book() {
 
 function deleteBook(thisDiv, num) {
   //remove information in library
-  console.log(num);
   let holdArray = [];
   for (let i = 0; i < myLibrary.length; i++) {
     if (i !== num) {
@@ -120,9 +116,8 @@ function deleteBook(thisDiv, num) {
     }
   }
   myLibrary = holdArray;
-  console.log(myLibrary);
   thisDiv.remove();
-  book();//debug
+  book();
 }
 
 function readBook(thisDiv, num) {
