@@ -22,10 +22,10 @@ function addBook() {
   let repBool = isRepeat(newBook.title);
   if (repBool == true) {
     alert("You already have this title in the library");
-    document.getElementById("book-title").value = "";
-    document.getElementById("book-author").value = "";
-    document.getElementById("book-pages").value = "";
-    document.getElementById("book-read").checked = false;
+    // document.getElementById("book-title").value = "";
+    // document.getElementById("book-author").value = "";
+    // document.getElementById("book-pages").value = "";
+    // document.getElementById("book-read").checked = false;
     return;
   }
 
@@ -122,6 +122,7 @@ function deleteBook(thisDiv, num) {
   myLibrary = holdArray;
   console.log(myLibrary);
   thisDiv.remove();
+  book();//debug
 }
 
 function readBook(thisDiv, num) {
